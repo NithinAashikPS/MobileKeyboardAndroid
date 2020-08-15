@@ -1,0 +1,453 @@
+<html>
+<head>
+<title>KeyboardActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #008000; font-weight: bold;}
+.s3 { color: #0000ff;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+KeyboardActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.vspna.mobilekeyboard;
+
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>android.util.Log;
+<span class="s0">import </span>android.view.MotionEvent;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.widget.Button;
+
+<span class="s0">import </span>androidx.appcompat.app.AppCompatActivity;
+
+<span class="s0">import </span>java.nio.charset.StandardCharsets;
+
+<span class="s0">public class </span>KeyboardActivity <span class="s0">extends </span>AppCompatActivity <span class="s0">implements </span>View.OnTouchListener {
+
+    <span class="s0">private </span>Button ESC, F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, PRINTSCREEN, DELETE, INSERT, PAUSE;
+    <span class="s0">private </span>Button BACK_QUOTE, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, ZERO, MINUS, EQUALS, BACK_SPACE, HOME;
+    <span class="s0">private </span>Button TAB, Q, W, E, r, T, Y, U, I, O, P, OPEN_BRACKET, CLOSE_BRACKET, BACK_SLASH, PAGE_UP;
+    <span class="s0">private </span>Button CAPS_LOCK, A, S, D, F, G, H, J, K, L, SEMICOLON, QUOTE, ENTER, PAGE_DOWN;
+    <span class="s0">private </span>Button SHIFT1, Z, X, C, V, B, N, M, COMMA, PERIOD, SLASH, SHIFT2, UP, END;
+    <span class="s0">private </span>Button CONTROL1, WINDOW1, ALT, SPACE, ALT_GRAPH, WINDOW2, CONTEXT_MENU, CONTROL2, LEFT, DOWN, RIGHT;
+
+
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_keyboard);
+
+        ESC = findViewById(R.id.ESC);
+        F1 = findViewById(R.id.F1);
+        F2 = findViewById(R.id.F2);
+        F3 = findViewById(R.id.F3);
+        F4 = findViewById(R.id.F4);
+        F5 = findViewById(R.id.F5);
+        F6 = findViewById(R.id.F6);
+        F7 = findViewById(R.id.F7);
+        F8 = findViewById(R.id.F8);
+        F9 = findViewById(R.id.F9);
+        F10 = findViewById(R.id.F10);
+        F11 = findViewById(R.id.F11);
+        F12 = findViewById(R.id.F12);
+        PRINTSCREEN = findViewById(R.id.PRINTSCREEN);
+        DELETE = findViewById(R.id.DELETE);
+        INSERT = findViewById(R.id.INSERT);
+        PAUSE = findViewById(R.id.PAUSE);
+
+        BACK_QUOTE = findViewById(R.id.BACK_QUOTE);
+        ONE = findViewById(R.id.ONE);
+        TWO = findViewById(R.id.TWO);
+        THREE = findViewById(R.id.THREE);
+        FOUR = findViewById(R.id.FOUR);
+        FIVE = findViewById(R.id.FIVE);
+        SIX = findViewById(R.id.SIX);
+        SEVEN = findViewById(R.id.SEVEN);
+        EIGHT = findViewById(R.id.EIGHT);
+        NINE = findViewById(R.id.NINE);
+        ZERO = findViewById(R.id.ZERO);
+        MINUS = findViewById(R.id.MINUS);
+        EQUALS = findViewById(R.id.EQUALS);
+        BACK_SPACE = findViewById(R.id.BACK_SPACE);
+        HOME = findViewById(R.id.HOME);
+
+        TAB = findViewById(R.id.TAB);
+        Q = findViewById(R.id.Q);
+        W = findViewById(R.id.W);
+        E = findViewById(R.id.E);
+        r = findViewById(R.id.R);
+        T = findViewById(R.id.T);
+        Y = findViewById(R.id.Y);
+        U = findViewById(R.id.U);
+        I = findViewById(R.id.I);
+        O = findViewById(R.id.O);
+        P = findViewById(R.id.P);
+        OPEN_BRACKET = findViewById(R.id.OPEN_BRACKET);
+        CLOSE_BRACKET = findViewById(R.id.CLOSE_BRACKET);
+        BACK_SLASH = findViewById(R.id.BACK_SLASH);
+        PAGE_UP = findViewById(R.id.PAGE_UP);
+
+        CAPS_LOCK = findViewById(R.id.CAPS_LOCK);
+        A = findViewById(R.id.A);
+        S = findViewById(R.id.S);
+        D = findViewById(R.id.D);
+        F = findViewById(R.id.F);
+        G = findViewById(R.id.G);
+        H = findViewById(R.id.H);
+        J = findViewById(R.id.J);
+        K = findViewById(R.id.K);
+        L = findViewById(R.id.L);
+        SEMICOLON = findViewById(R.id.SEMICOLON);
+        QUOTE = findViewById(R.id.QUOTE);
+        ENTER = findViewById(R.id.ENTER);
+        PAGE_DOWN = findViewById(R.id.PAGE_DOWN);
+
+        SHIFT1 = findViewById(R.id.SHIFT1);
+        Z = findViewById(R.id.Z);
+        X = findViewById(R.id.X);
+        C = findViewById(R.id.C);
+        V = findViewById(R.id.V);
+        B = findViewById(R.id.B);
+        N = findViewById(R.id.N);
+        M = findViewById(R.id.M);
+        COMMA = findViewById(R.id.COMMA);
+        PERIOD = findViewById(R.id.PERIOD);
+        SLASH = findViewById(R.id.SLASH);
+        SHIFT2 = findViewById(R.id.SHIFT2);
+        UP = findViewById(R.id.UP);
+        END = findViewById(R.id.END);
+
+        CONTROL1 = findViewById(R.id.CONTROL1);
+        WINDOW1 = findViewById(R.id.WINDOW1);
+        ALT = findViewById(R.id.ALT);
+        SPACE = findViewById(R.id.SPACE);
+        ALT_GRAPH = findViewById(R.id.ALT_GRAPH);
+        WINDOW2 = findViewById(R.id.WINDOW2);
+        CONTEXT_MENU = findViewById(R.id.CONTEXT_MENU);
+        CONTROL2 = findViewById(R.id.CONTROL2);
+        LEFT = findViewById(R.id.LEFT);
+        DOWN = findViewById(R.id.DOWN);
+        RIGHT = findViewById(R.id.RIGHT);
+
+        ESC.setOnTouchListener(<span class="s0">this</span>);
+        F1.setOnTouchListener(<span class="s0">this</span>);
+        F2.setOnTouchListener(<span class="s0">this</span>);
+        F3.setOnTouchListener(<span class="s0">this</span>);
+        F4.setOnTouchListener(<span class="s0">this</span>);
+        F5.setOnTouchListener(<span class="s0">this</span>);
+        F6.setOnTouchListener(<span class="s0">this</span>);
+        F7.setOnTouchListener(<span class="s0">this</span>);
+        F8.setOnTouchListener(<span class="s0">this</span>);
+        F9.setOnTouchListener(<span class="s0">this</span>);
+        F10.setOnTouchListener(<span class="s0">this</span>);
+        F11.setOnTouchListener(<span class="s0">this</span>);
+        F12.setOnTouchListener(<span class="s0">this</span>);
+        PRINTSCREEN.setOnTouchListener(<span class="s0">this</span>);
+        DELETE.setOnTouchListener(<span class="s0">this</span>);
+        INSERT.setOnTouchListener(<span class="s0">this</span>);
+        PAUSE.setOnTouchListener(<span class="s0">this</span>);
+
+        BACK_QUOTE.setOnTouchListener(<span class="s0">this</span>);
+        ONE.setOnTouchListener(<span class="s0">this</span>);
+        TWO.setOnTouchListener(<span class="s0">this</span>);
+        THREE.setOnTouchListener(<span class="s0">this</span>);
+        FOUR.setOnTouchListener(<span class="s0">this</span>);
+        FIVE.setOnTouchListener(<span class="s0">this</span>);
+        SIX.setOnTouchListener(<span class="s0">this</span>);
+        SEVEN.setOnTouchListener(<span class="s0">this</span>);
+        EIGHT.setOnTouchListener(<span class="s0">this</span>);
+        NINE.setOnTouchListener(<span class="s0">this</span>);
+        ZERO.setOnTouchListener(<span class="s0">this</span>);
+        MINUS.setOnTouchListener(<span class="s0">this</span>);
+        EQUALS.setOnTouchListener(<span class="s0">this</span>);
+        BACK_SPACE.setOnTouchListener(<span class="s0">this</span>);
+        HOME.setOnTouchListener(<span class="s0">this</span>);
+
+        TAB.setOnTouchListener(<span class="s0">this</span>);
+        Q.setOnTouchListener(<span class="s0">this</span>);
+        W.setOnTouchListener(<span class="s0">this</span>);
+        E.setOnTouchListener(<span class="s0">this</span>);
+        r.setOnTouchListener(<span class="s0">this</span>);
+        T.setOnTouchListener(<span class="s0">this</span>);
+        Y.setOnTouchListener(<span class="s0">this</span>);
+        U.setOnTouchListener(<span class="s0">this</span>);
+        I.setOnTouchListener(<span class="s0">this</span>);
+        O.setOnTouchListener(<span class="s0">this</span>);
+        P.setOnTouchListener(<span class="s0">this</span>);
+        OPEN_BRACKET.setOnTouchListener(<span class="s0">this</span>);
+        CLOSE_BRACKET.setOnTouchListener(<span class="s0">this</span>);
+        BACK_SLASH.setOnTouchListener(<span class="s0">this</span>);
+        PAGE_UP.setOnTouchListener(<span class="s0">this</span>);
+
+        CAPS_LOCK.setOnTouchListener(<span class="s0">this</span>);
+        A.setOnTouchListener(<span class="s0">this</span>);
+        S.setOnTouchListener(<span class="s0">this</span>);
+        D.setOnTouchListener(<span class="s0">this</span>);
+        F.setOnTouchListener(<span class="s0">this</span>);
+        G.setOnTouchListener(<span class="s0">this</span>);
+        H.setOnTouchListener(<span class="s0">this</span>);
+        J.setOnTouchListener(<span class="s0">this</span>);
+        K.setOnTouchListener(<span class="s0">this</span>);
+        L.setOnTouchListener(<span class="s0">this</span>);
+        SEMICOLON.setOnTouchListener(<span class="s0">this</span>);
+        QUOTE.setOnTouchListener(<span class="s0">this</span>);
+        ENTER.setOnTouchListener(<span class="s0">this</span>);
+        PAGE_DOWN.setOnTouchListener(<span class="s0">this</span>);
+
+        SHIFT1.setOnTouchListener(<span class="s0">this</span>);
+        Z.setOnTouchListener(<span class="s0">this</span>);
+        X.setOnTouchListener(<span class="s0">this</span>);
+        C.setOnTouchListener(<span class="s0">this</span>);
+        V.setOnTouchListener(<span class="s0">this</span>);
+        B.setOnTouchListener(<span class="s0">this</span>);
+        N.setOnTouchListener(<span class="s0">this</span>);
+        M.setOnTouchListener(<span class="s0">this</span>);
+        COMMA.setOnTouchListener(<span class="s0">this</span>);
+        PERIOD.setOnTouchListener(<span class="s0">this</span>);
+        SLASH.setOnTouchListener(<span class="s0">this</span>);
+        SHIFT2.setOnTouchListener(<span class="s0">this</span>);
+        UP.setOnTouchListener(<span class="s0">this</span>);
+        END.setOnTouchListener(<span class="s0">this</span>);
+
+        CONTROL1.setOnTouchListener(<span class="s0">this</span>);
+        WINDOW1.setOnTouchListener(<span class="s0">this</span>);
+        ALT.setOnTouchListener(<span class="s0">this</span>);
+        SPACE.setOnTouchListener(<span class="s0">this</span>);
+        ALT_GRAPH.setOnTouchListener(<span class="s0">this</span>);
+        WINDOW2.setOnTouchListener(<span class="s0">this</span>);
+        CONTEXT_MENU.setOnTouchListener(<span class="s0">this</span>);
+        CONTROL2.setOnTouchListener(<span class="s0">this</span>);
+        LEFT.setOnTouchListener(<span class="s0">this</span>);
+        DOWN.setOnTouchListener(<span class="s0">this</span>);
+        RIGHT.setOnTouchListener(<span class="s0">this</span>);
+
+    }
+
+    <span class="s0">private void </span>sendData(String ipAddress, String s) {
+        <a href="SendMessage.java.html">SendMessage</a> sendMessage = <span class="s0">new <a href="SendMessage.java.html">SendMessage</a></span>();
+        sendMessage.execute(ipAddress, s);
+    }
+
+    <span class="s0">private </span>String StringToAscii(View view) {
+        String id = view.getResources().getResourceName(view.getId());
+        String[] temp = id.split(<span class="s2">&quot;/&quot;</span>);
+        <span class="s0">if </span>(temp[<span class="s3">1</span>].length() == <span class="s3">1</span>) {
+            <span class="s0">byte</span>[] bytes = temp[<span class="s3">1</span>].getBytes(StandardCharsets.US_ASCII);
+            <span class="s0">return </span>String.valueOf(bytes[<span class="s3">0</span>]);
+        } <span class="s0">else </span>{
+            <span class="s0">return </span>GetAscii(temp[<span class="s3">1</span>]);
+        }
+    }
+
+    <span class="s0">private </span>String GetAscii(String val) {
+        String ascii = <span class="s0">null</span>;
+        <span class="s0">switch </span>(val) {
+            <span class="s0">case </span><span class="s2">&quot;ESC&quot;</span>:
+                ascii = <span class="s2">&quot;27&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;F1&quot;</span>:
+                ascii = <span class="s2">&quot;112&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;F2&quot;</span>:
+                ascii = <span class="s2">&quot;113&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;F3&quot;</span>:
+                ascii = <span class="s2">&quot;114&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;F4&quot;</span>:
+                ascii = <span class="s2">&quot;115&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;F5&quot;</span>:
+                ascii = <span class="s2">&quot;116&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;F6&quot;</span>:
+                ascii = <span class="s2">&quot;117&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;F7&quot;</span>:
+                ascii = <span class="s2">&quot;118&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;F8&quot;</span>:
+                ascii = <span class="s2">&quot;119&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;F9&quot;</span>:
+                ascii = <span class="s2">&quot;120&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;F10&quot;</span>:
+                ascii = <span class="s2">&quot;121&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;F11&quot;</span>:
+                ascii = <span class="s2">&quot;122&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;F12&quot;</span>:
+                ascii = <span class="s2">&quot;123&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;PRINTSCREEN&quot;</span>:
+                ascii = <span class="s2">&quot;154&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;DELETE&quot;</span>:
+                ascii = <span class="s2">&quot;127&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;INSERT&quot;</span>:
+                ascii = <span class="s2">&quot;155&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;PAUSE&quot;</span>:
+                ascii = <span class="s2">&quot;19&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;BACK_QUOTE&quot;</span>:
+                    ascii = <span class="s2">&quot;192&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;ONE&quot;</span>:
+                    ascii = <span class="s2">&quot;49&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;TWO&quot;</span>:
+                    ascii = <span class="s2">&quot;50&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;THREE&quot;</span>:
+                    ascii = <span class="s2">&quot;51&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;FOUR&quot;</span>:
+                    ascii = <span class="s2">&quot;52&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;FIVE&quot;</span>:
+                    ascii = <span class="s2">&quot;53&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;SIX&quot;</span>:
+                    ascii = <span class="s2">&quot;54&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;SEVEN&quot;</span>:
+                    ascii = <span class="s2">&quot;55&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;EIGHT&quot;</span>:
+                    ascii = <span class="s2">&quot;56&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;NINE&quot;</span>:
+                    ascii = <span class="s2">&quot;57&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;ZERO&quot;</span>:
+                    ascii = <span class="s2">&quot;48&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;MINUS&quot;</span>:
+                    ascii = <span class="s2">&quot;45&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;EQUALS&quot;</span>:
+                    ascii = <span class="s2">&quot;61&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;BACK_SPACE&quot;</span>:
+                    ascii = <span class="s2">&quot;8&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;HOME&quot;</span>:
+                    ascii = <span class="s2">&quot;36&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;TAB&quot;</span>:
+                ascii = <span class="s2">&quot;9&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;OPEN_BRACKET&quot;</span>:
+                    ascii = <span class="s2">&quot;91&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;CLOSE_BRACKET&quot;</span>:
+                    ascii = <span class="s2">&quot;93&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;BACK_SLASH&quot;</span>:
+                    ascii = <span class="s2">&quot;92&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;PAGE_UP&quot;</span>:
+                ascii = <span class="s2">&quot;33&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;CAPS_LOCK&quot;</span>:
+                ascii = <span class="s2">&quot;20&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;SEMICOLON&quot;</span>:
+                    ascii = <span class="s2">&quot;59&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;QUOTE&quot;</span>:
+                    ascii = <span class="s2">&quot;222&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;ENTER&quot;</span>:
+                ascii = <span class="s2">&quot;10&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;PAGE_DOWN&quot;</span>:
+                ascii = <span class="s2">&quot;34&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;SHIFT1&quot;</span>:
+                ascii = <span class="s2">&quot;16&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;COMMA&quot;</span>:
+                    ascii = <span class="s2">&quot;44&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;PERIOD&quot;</span>:
+                    ascii = <span class="s2">&quot;46&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;SLASH&quot;</span>:
+                    ascii = <span class="s2">&quot;47&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;SHIFT2&quot;</span>:
+                ascii = <span class="s2">&quot;16&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;UP&quot;</span>:
+                ascii = <span class="s2">&quot;38&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;END&quot;</span>:
+                ascii = <span class="s2">&quot;35&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;CONTROL1&quot;</span>:
+                ascii = <span class="s2">&quot;17&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;WINDOW1&quot;</span>:
+                ascii = <span class="s2">&quot;524&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;ALT&quot;</span>:
+                ascii = <span class="s2">&quot;18&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;SPACE&quot;</span>:
+                ascii = <span class="s2">&quot;32&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;ALT_GRAPH&quot;</span>:
+                ascii = <span class="s2">&quot;65406&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;WINDOW2&quot;</span>:
+                ascii = <span class="s2">&quot;524&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;CONTEXT_MENU&quot;</span>:
+                ascii = <span class="s2">&quot;525&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;CONTROL2&quot;</span>:
+                ascii = <span class="s2">&quot;17&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;LEFT&quot;</span>:
+                ascii = <span class="s2">&quot;37&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;DOWN&quot;</span>:
+                ascii = <span class="s2">&quot;40&quot;</span>;
+                <span class="s0">break</span>;
+            <span class="s0">case </span><span class="s2">&quot;RIGHT&quot;</span>:
+                ascii = <span class="s2">&quot;39&quot;</span>;
+                <span class="s0">break</span>;
+        }
+        <span class="s0">return </span>ascii;
+    }
+
+    @Override
+    <span class="s0">public boolean </span>onTouch(View view, MotionEvent event) {
+
+        <span class="s0">switch </span>(event.getAction()) {
+            <span class="s0">case </span>MotionEvent.ACTION_DOWN:
+                Log.i(<span class="s2">&quot;PRESSED : &quot;</span>, StringToAscii(view));
+                sendData(getIntent().getExtras().getString(<span class="s2">&quot;IPAddress&quot;</span>), <span class="s2">&quot;Press=&quot; </span>+ StringToAscii(view));
+                <span class="s0">break</span>;
+            <span class="s0">case </span>MotionEvent.ACTION_UP:
+                Log.i(<span class="s2">&quot;RELEASED : &quot;</span>, StringToAscii(view));
+                sendData(getIntent().getExtras().getString(<span class="s2">&quot;IPAddress&quot;</span>), <span class="s2">&quot;Release=&quot; </span>+ StringToAscii(view));
+                <span class="s0">break</span>;
+        }
+        <span class="s0">return false</span>;
+    }
+}
+
+</pre>
+</body>
+</html>

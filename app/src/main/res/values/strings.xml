@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Mobile Keyboard</string>
+    <string name="Quotes">\"\n\'</string>
+    <string name="GreaterThan"><![CDATA[<\n,]]></string>
+</resources>

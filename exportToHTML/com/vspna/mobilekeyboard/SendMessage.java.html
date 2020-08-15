@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>SendMessage.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #008000; font-weight: bold;}
+.s3 { color: #0000ff;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+SendMessage.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.vspna.mobilekeyboard;
+
+<span class="s0">import </span>android.annotation.SuppressLint;
+<span class="s0">import </span>android.os.AsyncTask;
+
+<span class="s0">import </span>java.io.IOException;
+<span class="s0">import </span>java.io.PrintWriter;
+<span class="s0">import </span>java.net.Socket;
+
+<span class="s0">public class </span>SendMessage <span class="s0">extends </span>AsyncTask&lt;String,Void,Void&gt; {
+    @SuppressLint(<span class="s2">&quot;WrongThread&quot;</span>)
+    @Override
+    <span class="s0">protected </span>Void doInBackground(String... voids) {
+        Socket socket;
+        PrintWriter printWriter;
+
+        <span class="s0">try </span>{
+            socket = <span class="s0">new </span>Socket(voids[<span class="s3">0</span>],<span class="s3">6000</span>);
+            printWriter = <span class="s0">new </span>PrintWriter(socket.getOutputStream());
+            printWriter.write(voids[<span class="s3">1</span>]);
+            printWriter.flush();
+            printWriter.close();
+            socket.close();
+        } <span class="s0">catch </span>(IOException e) {
+            e.printStackTrace();
+        }
+
+        <span class="s0">return null</span>;
+    }
+}
+</pre>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>SplashActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+SplashActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.vspna.mobilekeyboard;
+
+<span class="s0">import </span>androidx.appcompat.app.AppCompatActivity;
+
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.os.Bundle;
+
+<span class="s0">public class </span>SplashActivity <span class="s0">extends </span>AppCompatActivity {
+
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
+        startActivity(<span class="s0">new </span>Intent(SplashActivity.<span class="s0">this</span>,<a href="ServerActivity.java.html">ServerActivity</a>.<span class="s0">class</span>));
+        finish();
+    }
+}
+</pre>
+</body>
+</html>
